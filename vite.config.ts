@@ -7,7 +7,9 @@ import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-
+  console.log('mode =', mode);
+console.log('cwd =', process.cwd());
+console.log('env.BURGER_API_URL =', env.BURGER_API_URL);
   return {
     plugins: [checker({
       typescript: { tsconfigPath: 'tsconfig.app.json' }
