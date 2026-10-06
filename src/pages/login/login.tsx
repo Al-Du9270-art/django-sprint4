@@ -2,12 +2,14 @@ import { LoginUI } from '@ui-pages';
 import { type SyntheticEvent, useState } from 'react';
 import { useDispatch, useSelector } from '@/services/store';
 import { loginUser } from '@/slices/userSlice';
-import { Navigate } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 
 export const Login = (): React.JSX.Element => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const errorText = useSelector((state) => state.user.loginUserError?.message ?? '');
+  const location = useLocation();
+  const from = location.state?.from;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,7 +20,7 @@ export const Login = (): React.JSX.Element => {
   };
 
   if (isAuthenticated) {
-    return <Navigate to="/profile" replace />;
+    return <Navigate to={from} replace />;
   }
 
   return (
