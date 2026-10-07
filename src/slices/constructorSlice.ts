@@ -27,6 +27,16 @@ export const constructorSlice = createSlice({
       state.bun = null;
       state.ingredients = [];
     },
+    moveIngredientUp: (state, action: PayloadAction<number>) => {
+      const item = state.ingredients[action.payload];
+      state.ingredients[action.payload] = state.ingredients[action.payload - 1];
+      state.ingredients[action.payload - 1] = item;
+    },
+    moveIngredientDown: (state, action: PayloadAction<number>) => {
+      const item = state.ingredients[action.payload];
+      state.ingredients[action.payload] = state.ingredients[action.payload + 1];
+      state.ingredients[action.payload + 1] = item;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(createOrder.fulfilled, (state) => {
@@ -36,6 +46,12 @@ export const constructorSlice = createSlice({
   },
 });
 
-export const { setBun, addIngredient, removeIngredient, clearConstructor } =
-  constructorSlice.actions;
+export const {
+  setBun,
+  addIngredient,
+  removeIngredient,
+  clearConstructor,
+  moveIngredientUp,
+  moveIngredientDown,
+} = constructorSlice.actions;
 export default constructorSlice.reducer;

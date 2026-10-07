@@ -180,10 +180,12 @@ const RouteComponent = (): React.JSX.Element => {
           <Route
             path="/profile/orders/:number"
             element={
-              <Modal title="Детали заказа" onClose={() => navigate('/profile/orders')}>
-                {' '}
-                <OrderInfo />{' '}
-              </Modal>
+              <ProtectedRoute>
+                <Modal title="Детали заказа" onClose={() => navigate('/profile/orders')}>
+                  {' '}
+                  <OrderInfo />{' '}
+                </Modal>
+              </ProtectedRoute>
             }
           />
         </Routes>
