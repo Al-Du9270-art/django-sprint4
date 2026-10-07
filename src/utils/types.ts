@@ -51,3 +51,8 @@ export type TFeedState = {
   isLoading: boolean;
   error: unknown;
 };
+
+export type TOrderState = {
+  orderRequest: boolean;
+  orderModalData: TOrder | null;
+};
