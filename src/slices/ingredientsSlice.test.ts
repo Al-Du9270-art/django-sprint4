@@ -54,13 +54,13 @@ describe('тесты slices ingredients', () => {
     expect(result.errorMessage).toBe(null);
   });
 
-test('getIngredient.rejected сохраняет ошибку и сбрасывает isLoading', () => {
-  const loadingState = { ...initialState, isLoading: true };
-  const error = { name: 'Error', message: 'Network error' };
-  const action = getIngredient.rejected(error, 'request-id');
-  const result = ingredientsReducer(loadingState, action);
+  test('getIngredient.rejected сохраняет ошибку и сбрасывает isLoading', () => {
+    const loadingState = { ...initialState, isLoading: true };
+    const error = { name: 'Error', message: 'Network error' };
+    const action = getIngredient.rejected(error, 'request-id');
+    const result = ingredientsReducer(loadingState, action);
 
-  expect(result.isLoading).toBe(false);
-  expect(result.errorMessage).toEqual(error);
-});
+    expect(result.isLoading).toBe(false);
+    expect(result.errorMessage).toEqual(error);
+  });
 });
